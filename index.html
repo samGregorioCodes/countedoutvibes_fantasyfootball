@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Counted Out Football &ndash; Head-to-Head PPR Matchup</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#matchup">Skip to the matchup form</a>
+
+  <header class="masthead">
+    <div class="masthead-field" aria-hidden="true"></div>
+    <p class="logo"><span class="logo-a">Counted Out</span> <span class="logo-b">Football</span></p>
+    <p class="tagline">Head-to-head PPR matchups for the underdogs</p>
+  </header>
+
+  <nav class="tabs" aria-label="Page sections">
+    <ul>
+      <li><a class="tab active" href="#matchup" aria-current="page">Matchup</a></li>
+      <li><a class="tab" href="#team-one">Team One</a></li>
+      <li><a class="tab" href="#team-two">Team Two</a></li>
+      <li><a class="tab" href="#scoring">Scoring</a></li>
+      <li><a class="tab" href="#results">Final Score</a></li>
+      <li><a class="tab" href="https://www.espn.com/fantasy/football/story/_/page/FFPreseasonRank26main/fantasy-football-rankings-2026-draft-ppr" target="_blank" rel="noopener">ESPN Rankings<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+    </ul>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar sidebar-left" aria-label="Help">
+      <section class="panel" aria-labelledby="how-heading">
+        <h2 class="panel-head" id="how-heading">How to Play</h2>
+        <ol class="panel-body steps">
+          <li>Enter both team names.</li>
+          <li>Enter each team's QB, RB1, RB2, WR1, WR2 and WR3.</li>
+          <li>Look up each player's preseason overall rank on ESPN.</li>
+          <li>Enter each player's stats for the week.</li>
+          <li>Press <strong>Calculate Matchup</strong>.</li>
+        </ol>
+      </section>
+      <section class="panel" aria-labelledby="links-heading">
+        <h2 class="panel-head" id="links-heading">Quick Links</h2>
+        <ul class="panel-body link-list">
+          <li><a href="https://www.espn.com/fantasy/football/story/_/page/FFPreseasonRank26main/fantasy-football-rankings-2026-draft-ppr" target="_blank" rel="noopener">ESPN preseason PPR rankings<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          <li><a href="#scoring">Scoring rules</a></li>
+          <li><a href="#team-one">Team One lineup</a></li>
+          <li><a href="#team-two">Team Two lineup</a></li>
+          <li><a href="#results">Final score</a></li>
+        </ul>
+      </section>
+      <section class="promo" aria-labelledby="promo-heading">
+        <h2 id="promo-heading" class="promo-head">Counted Out?</h2>
+        <p>Every player ranked outside ESPN's preseason top 100 scores <strong>+5 bonus points</strong>.</p>
+      </section>
+    </aside>
+
+    <main id="main">
+      <form id="matchup-form" autocomplete="off">
+      <section class="panel" id="matchup" aria-labelledby="matchup-heading">
+        <h2 class="panel-head" id="matchup-heading">This Week&rsquo;s Matchup</h2>
+        <div class="panel-body matchup-row">
+          <div class="field field-team">
+            <label for="t1-team-name">Enter Team One Name</label>
+            <input id="t1-team-name" name="t1-team-name" type="text" required
+                   pattern=".*\S.*" maxlength="40" title="Enter a team name">
+          </div>
+          <p class="versus" aria-hidden="true">vs.</p>
+          <div class="field field-team">
+            <label for="t2-team-name">Enter Team Two Name</label>
+            <input id="t2-team-name" name="t2-team-name" type="text" required
+                   pattern=".*\S.*" maxlength="40" title="Enter a team name">
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="team-one" aria-labelledby="team-one-heading">
+        <h2 class="panel-head" id="team-one-heading">Team One Lineup
+          <span class="panel-head-note">1 QB &middot; 2 RB &middot; 3 WR</span></h2>
+        <div class="panel-body">
+          <fieldset class="player" data-team="t1" data-slot="qb" data-position="QB">
+            <legend><span class="pos pos-qb">QB</span><span class="visually-hidden"> (Team One)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t1-qb-name">Enter your QB</label>
+                <input id="t1-qb-name" name="t1-qb-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t1-qb-rank">Enter <span class="subject" data-subject-for="t1-qb" data-default="your QB">your QB</span> ESPN overall rank</label>
+                <input id="t1-qb-rank" name="t1-qb-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t1-qb-unranked" name="t1-qb-unranked" type="checkbox" class="unranked-toggle" aria-controls="t1-qb-rank">
+                <label for="t1-qb-unranked">Check if <span class="subject" data-subject-for="t1-qb" data-default="your QB">your QB</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t1-qb-passing">Enter <span class="subject" data-subject-for="t1-qb" data-default="your QB">your QB</span> passing yards</label>
+                <input id="t1-qb-passing" name="t1-qb-passing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-qb-rushing">Enter <span class="subject" data-subject-for="t1-qb" data-default="your QB">your QB</span> rushing yards</label>
+                <input id="t1-qb-rushing" name="t1-qb-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-qb-touchdowns">Enter <span class="subject" data-subject-for="t1-qb" data-default="your QB">your QB</span> touchdowns</label>
+                <input id="t1-qb-touchdowns" name="t1-qb-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-qb-receptions">Enter <span class="subject" data-subject-for="t1-qb" data-default="your QB">your QB</span> receptions</label>
+                <input id="t1-qb-receptions" name="t1-qb-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t1" data-slot="rb1" data-position="RB">
+            <legend><span class="pos pos-rb">RB1</span><span class="visually-hidden"> (Team One)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t1-rb1-name">Enter your RB1</label>
+                <input id="t1-rb1-name" name="t1-rb1-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t1-rb1-rank">Enter <span class="subject" data-subject-for="t1-rb1" data-default="your RB1">your RB1</span> ESPN overall rank</label>
+                <input id="t1-rb1-rank" name="t1-rb1-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t1-rb1-unranked" name="t1-rb1-unranked" type="checkbox" class="unranked-toggle" aria-controls="t1-rb1-rank">
+                <label for="t1-rb1-unranked">Check if <span class="subject" data-subject-for="t1-rb1" data-default="your RB1">your RB1</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t1-rb1-rushing">Enter <span class="subject" data-subject-for="t1-rb1" data-default="your RB1">your RB1</span> rushing yards</label>
+                <input id="t1-rb1-rushing" name="t1-rb1-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-rb1-receiving">Enter <span class="subject" data-subject-for="t1-rb1" data-default="your RB1">your RB1</span> receiving yards</label>
+                <input id="t1-rb1-receiving" name="t1-rb1-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-rb1-touchdowns">Enter <span class="subject" data-subject-for="t1-rb1" data-default="your RB1">your RB1</span> touchdowns</label>
+                <input id="t1-rb1-touchdowns" name="t1-rb1-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-rb1-receptions">Enter <span class="subject" data-subject-for="t1-rb1" data-default="your RB1">your RB1</span> receptions</label>
+                <input id="t1-rb1-receptions" name="t1-rb1-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t1" data-slot="rb2" data-position="RB">
+            <legend><span class="pos pos-rb">RB2</span><span class="visually-hidden"> (Team One)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t1-rb2-name">Enter your RB2</label>
+                <input id="t1-rb2-name" name="t1-rb2-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t1-rb2-rank">Enter <span class="subject" data-subject-for="t1-rb2" data-default="your RB2">your RB2</span> ESPN overall rank</label>
+                <input id="t1-rb2-rank" name="t1-rb2-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t1-rb2-unranked" name="t1-rb2-unranked" type="checkbox" class="unranked-toggle" aria-controls="t1-rb2-rank">
+                <label for="t1-rb2-unranked">Check if <span class="subject" data-subject-for="t1-rb2" data-default="your RB2">your RB2</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t1-rb2-rushing">Enter <span class="subject" data-subject-for="t1-rb2" data-default="your RB2">your RB2</span> rushing yards</label>
+                <input id="t1-rb2-rushing" name="t1-rb2-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-rb2-receiving">Enter <span class="subject" data-subject-for="t1-rb2" data-default="your RB2">your RB2</span> receiving yards</label>
+                <input id="t1-rb2-receiving" name="t1-rb2-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-rb2-touchdowns">Enter <span class="subject" data-subject-for="t1-rb2" data-default="your RB2">your RB2</span> touchdowns</label>
+                <input id="t1-rb2-touchdowns" name="t1-rb2-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-rb2-receptions">Enter <span class="subject" data-subject-for="t1-rb2" data-default="your RB2">your RB2</span> receptions</label>
+                <input id="t1-rb2-receptions" name="t1-rb2-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t1" data-slot="wr1" data-position="WR">
+            <legend><span class="pos pos-wr">WR1</span><span class="visually-hidden"> (Team One)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t1-wr1-name">Enter your WR1</label>
+                <input id="t1-wr1-name" name="t1-wr1-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t1-wr1-rank">Enter <span class="subject" data-subject-for="t1-wr1" data-default="your WR1">your WR1</span> ESPN overall rank</label>
+                <input id="t1-wr1-rank" name="t1-wr1-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t1-wr1-unranked" name="t1-wr1-unranked" type="checkbox" class="unranked-toggle" aria-controls="t1-wr1-rank">
+                <label for="t1-wr1-unranked">Check if <span class="subject" data-subject-for="t1-wr1" data-default="your WR1">your WR1</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t1-wr1-receiving">Enter <span class="subject" data-subject-for="t1-wr1" data-default="your WR1">your WR1</span> receiving yards</label>
+                <input id="t1-wr1-receiving" name="t1-wr1-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr1-rushing">Enter <span class="subject" data-subject-for="t1-wr1" data-default="your WR1">your WR1</span> rushing yards</label>
+                <input id="t1-wr1-rushing" name="t1-wr1-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr1-touchdowns">Enter <span class="subject" data-subject-for="t1-wr1" data-default="your WR1">your WR1</span> touchdowns</label>
+                <input id="t1-wr1-touchdowns" name="t1-wr1-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr1-receptions">Enter <span class="subject" data-subject-for="t1-wr1" data-default="your WR1">your WR1</span> receptions</label>
+                <input id="t1-wr1-receptions" name="t1-wr1-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t1" data-slot="wr2" data-position="WR">
+            <legend><span class="pos pos-wr">WR2</span><span class="visually-hidden"> (Team One)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t1-wr2-name">Enter your WR2</label>
+                <input id="t1-wr2-name" name="t1-wr2-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t1-wr2-rank">Enter <span class="subject" data-subject-for="t1-wr2" data-default="your WR2">your WR2</span> ESPN overall rank</label>
+                <input id="t1-wr2-rank" name="t1-wr2-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t1-wr2-unranked" name="t1-wr2-unranked" type="checkbox" class="unranked-toggle" aria-controls="t1-wr2-rank">
+                <label for="t1-wr2-unranked">Check if <span class="subject" data-subject-for="t1-wr2" data-default="your WR2">your WR2</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t1-wr2-receiving">Enter <span class="subject" data-subject-for="t1-wr2" data-default="your WR2">your WR2</span> receiving yards</label>
+                <input id="t1-wr2-receiving" name="t1-wr2-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr2-rushing">Enter <span class="subject" data-subject-for="t1-wr2" data-default="your WR2">your WR2</span> rushing yards</label>
+                <input id="t1-wr2-rushing" name="t1-wr2-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr2-touchdowns">Enter <span class="subject" data-subject-for="t1-wr2" data-default="your WR2">your WR2</span> touchdowns</label>
+                <input id="t1-wr2-touchdowns" name="t1-wr2-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr2-receptions">Enter <span class="subject" data-subject-for="t1-wr2" data-default="your WR2">your WR2</span> receptions</label>
+                <input id="t1-wr2-receptions" name="t1-wr2-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t1" data-slot="wr3" data-position="WR">
+            <legend><span class="pos pos-wr">WR3</span><span class="visually-hidden"> (Team One)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t1-wr3-name">Enter your WR3</label>
+                <input id="t1-wr3-name" name="t1-wr3-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t1-wr3-rank">Enter <span class="subject" data-subject-for="t1-wr3" data-default="your WR3">your WR3</span> ESPN overall rank</label>
+                <input id="t1-wr3-rank" name="t1-wr3-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t1-wr3-unranked" name="t1-wr3-unranked" type="checkbox" class="unranked-toggle" aria-controls="t1-wr3-rank">
+                <label for="t1-wr3-unranked">Check if <span class="subject" data-subject-for="t1-wr3" data-default="your WR3">your WR3</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t1-wr3-receiving">Enter <span class="subject" data-subject-for="t1-wr3" data-default="your WR3">your WR3</span> receiving yards</label>
+                <input id="t1-wr3-receiving" name="t1-wr3-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr3-rushing">Enter <span class="subject" data-subject-for="t1-wr3" data-default="your WR3">your WR3</span> rushing yards</label>
+                <input id="t1-wr3-rushing" name="t1-wr3-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr3-touchdowns">Enter <span class="subject" data-subject-for="t1-wr3" data-default="your WR3">your WR3</span> touchdowns</label>
+                <input id="t1-wr3-touchdowns" name="t1-wr3-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t1-wr3-receptions">Enter <span class="subject" data-subject-for="t1-wr3" data-default="your WR3">your WR3</span> receptions</label>
+                <input id="t1-wr3-receptions" name="t1-wr3-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <section class="panel" id="team-two" aria-labelledby="team-two-heading">
+        <h2 class="panel-head" id="team-two-heading">Team Two Lineup
+          <span class="panel-head-note">1 QB &middot; 2 RB &middot; 3 WR</span></h2>
+        <div class="panel-body">
+          <fieldset class="player" data-team="t2" data-slot="qb" data-position="QB">
+            <legend><span class="pos pos-qb">QB</span><span class="visually-hidden"> (Team Two)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t2-qb-name">Enter your QB</label>
+                <input id="t2-qb-name" name="t2-qb-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t2-qb-rank">Enter <span class="subject" data-subject-for="t2-qb" data-default="your QB">your QB</span> ESPN overall rank</label>
+                <input id="t2-qb-rank" name="t2-qb-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t2-qb-unranked" name="t2-qb-unranked" type="checkbox" class="unranked-toggle" aria-controls="t2-qb-rank">
+                <label for="t2-qb-unranked">Check if <span class="subject" data-subject-for="t2-qb" data-default="your QB">your QB</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t2-qb-passing">Enter <span class="subject" data-subject-for="t2-qb" data-default="your QB">your QB</span> passing yards</label>
+                <input id="t2-qb-passing" name="t2-qb-passing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-qb-rushing">Enter <span class="subject" data-subject-for="t2-qb" data-default="your QB">your QB</span> rushing yards</label>
+                <input id="t2-qb-rushing" name="t2-qb-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-qb-touchdowns">Enter <span class="subject" data-subject-for="t2-qb" data-default="your QB">your QB</span> touchdowns</label>
+                <input id="t2-qb-touchdowns" name="t2-qb-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-qb-receptions">Enter <span class="subject" data-subject-for="t2-qb" data-default="your QB">your QB</span> receptions</label>
+                <input id="t2-qb-receptions" name="t2-qb-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t2" data-slot="rb1" data-position="RB">
+            <legend><span class="pos pos-rb">RB1</span><span class="visually-hidden"> (Team Two)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t2-rb1-name">Enter your RB1</label>
+                <input id="t2-rb1-name" name="t2-rb1-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t2-rb1-rank">Enter <span class="subject" data-subject-for="t2-rb1" data-default="your RB1">your RB1</span> ESPN overall rank</label>
+                <input id="t2-rb1-rank" name="t2-rb1-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t2-rb1-unranked" name="t2-rb1-unranked" type="checkbox" class="unranked-toggle" aria-controls="t2-rb1-rank">
+                <label for="t2-rb1-unranked">Check if <span class="subject" data-subject-for="t2-rb1" data-default="your RB1">your RB1</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t2-rb1-rushing">Enter <span class="subject" data-subject-for="t2-rb1" data-default="your RB1">your RB1</span> rushing yards</label>
+                <input id="t2-rb1-rushing" name="t2-rb1-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-rb1-receiving">Enter <span class="subject" data-subject-for="t2-rb1" data-default="your RB1">your RB1</span> receiving yards</label>
+                <input id="t2-rb1-receiving" name="t2-rb1-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-rb1-touchdowns">Enter <span class="subject" data-subject-for="t2-rb1" data-default="your RB1">your RB1</span> touchdowns</label>
+                <input id="t2-rb1-touchdowns" name="t2-rb1-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-rb1-receptions">Enter <span class="subject" data-subject-for="t2-rb1" data-default="your RB1">your RB1</span> receptions</label>
+                <input id="t2-rb1-receptions" name="t2-rb1-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t2" data-slot="rb2" data-position="RB">
+            <legend><span class="pos pos-rb">RB2</span><span class="visually-hidden"> (Team Two)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t2-rb2-name">Enter your RB2</label>
+                <input id="t2-rb2-name" name="t2-rb2-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t2-rb2-rank">Enter <span class="subject" data-subject-for="t2-rb2" data-default="your RB2">your RB2</span> ESPN overall rank</label>
+                <input id="t2-rb2-rank" name="t2-rb2-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t2-rb2-unranked" name="t2-rb2-unranked" type="checkbox" class="unranked-toggle" aria-controls="t2-rb2-rank">
+                <label for="t2-rb2-unranked">Check if <span class="subject" data-subject-for="t2-rb2" data-default="your RB2">your RB2</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t2-rb2-rushing">Enter <span class="subject" data-subject-for="t2-rb2" data-default="your RB2">your RB2</span> rushing yards</label>
+                <input id="t2-rb2-rushing" name="t2-rb2-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-rb2-receiving">Enter <span class="subject" data-subject-for="t2-rb2" data-default="your RB2">your RB2</span> receiving yards</label>
+                <input id="t2-rb2-receiving" name="t2-rb2-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-rb2-touchdowns">Enter <span class="subject" data-subject-for="t2-rb2" data-default="your RB2">your RB2</span> touchdowns</label>
+                <input id="t2-rb2-touchdowns" name="t2-rb2-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-rb2-receptions">Enter <span class="subject" data-subject-for="t2-rb2" data-default="your RB2">your RB2</span> receptions</label>
+                <input id="t2-rb2-receptions" name="t2-rb2-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t2" data-slot="wr1" data-position="WR">
+            <legend><span class="pos pos-wr">WR1</span><span class="visually-hidden"> (Team Two)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t2-wr1-name">Enter your WR1</label>
+                <input id="t2-wr1-name" name="t2-wr1-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t2-wr1-rank">Enter <span class="subject" data-subject-for="t2-wr1" data-default="your WR1">your WR1</span> ESPN overall rank</label>
+                <input id="t2-wr1-rank" name="t2-wr1-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t2-wr1-unranked" name="t2-wr1-unranked" type="checkbox" class="unranked-toggle" aria-controls="t2-wr1-rank">
+                <label for="t2-wr1-unranked">Check if <span class="subject" data-subject-for="t2-wr1" data-default="your WR1">your WR1</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t2-wr1-receiving">Enter <span class="subject" data-subject-for="t2-wr1" data-default="your WR1">your WR1</span> receiving yards</label>
+                <input id="t2-wr1-receiving" name="t2-wr1-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr1-rushing">Enter <span class="subject" data-subject-for="t2-wr1" data-default="your WR1">your WR1</span> rushing yards</label>
+                <input id="t2-wr1-rushing" name="t2-wr1-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr1-touchdowns">Enter <span class="subject" data-subject-for="t2-wr1" data-default="your WR1">your WR1</span> touchdowns</label>
+                <input id="t2-wr1-touchdowns" name="t2-wr1-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr1-receptions">Enter <span class="subject" data-subject-for="t2-wr1" data-default="your WR1">your WR1</span> receptions</label>
+                <input id="t2-wr1-receptions" name="t2-wr1-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t2" data-slot="wr2" data-position="WR">
+            <legend><span class="pos pos-wr">WR2</span><span class="visually-hidden"> (Team Two)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t2-wr2-name">Enter your WR2</label>
+                <input id="t2-wr2-name" name="t2-wr2-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t2-wr2-rank">Enter <span class="subject" data-subject-for="t2-wr2" data-default="your WR2">your WR2</span> ESPN overall rank</label>
+                <input id="t2-wr2-rank" name="t2-wr2-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t2-wr2-unranked" name="t2-wr2-unranked" type="checkbox" class="unranked-toggle" aria-controls="t2-wr2-rank">
+                <label for="t2-wr2-unranked">Check if <span class="subject" data-subject-for="t2-wr2" data-default="your WR2">your WR2</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t2-wr2-receiving">Enter <span class="subject" data-subject-for="t2-wr2" data-default="your WR2">your WR2</span> receiving yards</label>
+                <input id="t2-wr2-receiving" name="t2-wr2-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr2-rushing">Enter <span class="subject" data-subject-for="t2-wr2" data-default="your WR2">your WR2</span> rushing yards</label>
+                <input id="t2-wr2-rushing" name="t2-wr2-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr2-touchdowns">Enter <span class="subject" data-subject-for="t2-wr2" data-default="your WR2">your WR2</span> touchdowns</label>
+                <input id="t2-wr2-touchdowns" name="t2-wr2-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr2-receptions">Enter <span class="subject" data-subject-for="t2-wr2" data-default="your WR2">your WR2</span> receptions</label>
+                <input id="t2-wr2-receptions" name="t2-wr2-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="player" data-team="t2" data-slot="wr3" data-position="WR">
+            <legend><span class="pos pos-wr">WR3</span><span class="visually-hidden"> (Team Two)</span></legend>
+            <div class="row row-identity">
+              <div class="field field-name">
+                <label for="t2-wr3-name">Enter your WR3</label>
+                <input id="t2-wr3-name" name="t2-wr3-name" type="text" required autocomplete="off" pattern=".*\S.*" maxlength="60" title="Enter the player's name">
+              </div>
+              <div class="field field-rank">
+                <label for="t2-wr3-rank">Enter <span class="subject" data-subject-for="t2-wr3" data-default="your WR3">your WR3</span> ESPN overall rank</label>
+                <input id="t2-wr3-rank" name="t2-wr3-rank" type="number" required min="1" step="1" inputmode="numeric">
+              </div>
+              <div class="field field-check">
+                <input id="t2-wr3-unranked" name="t2-wr3-unranked" type="checkbox" class="unranked-toggle" aria-controls="t2-wr3-rank">
+                <label for="t2-wr3-unranked">Check if <span class="subject" data-subject-for="t2-wr3" data-default="your WR3">your WR3</span> is not ranked by ESPN (counts as outside the top 100, +5 bonus)</label>
+              </div>
+            </div>
+            <div class="row row-stats">
+              <div class="field field-stat">
+                <label for="t2-wr3-receiving">Enter <span class="subject" data-subject-for="t2-wr3" data-default="your WR3">your WR3</span> receiving yards</label>
+                <input id="t2-wr3-receiving" name="t2-wr3-receiving" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr3-rushing">Enter <span class="subject" data-subject-for="t2-wr3" data-default="your WR3">your WR3</span> rushing yards</label>
+                <input id="t2-wr3-rushing" name="t2-wr3-rushing" type="number" required step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr3-touchdowns">Enter <span class="subject" data-subject-for="t2-wr3" data-default="your WR3">your WR3</span> touchdowns</label>
+                <input id="t2-wr3-touchdowns" name="t2-wr3-touchdowns" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+              <div class="field field-stat">
+                <label for="t2-wr3-receptions">Enter <span class="subject" data-subject-for="t2-wr3" data-default="your WR3">your WR3</span> receptions</label>
+                <input id="t2-wr3-receptions" name="t2-wr3-receptions" type="number" required min="0" step="1" value="0" inputmode="numeric">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
+      <div class="submit-row">
+        <button type="submit" id="calculate" class="gold-button" disabled>Calculate Matchup &raquo;</button>
+        <p id="engine-status" class="engine-status" role="status">Loading game engine&hellip;</p>
+      </div>
+      </form>
+    </main>
+
+    <aside class="sidebar sidebar-right" aria-label="Scoring and results">
+      <section class="panel" id="scoring" aria-labelledby="scoring-heading">
+        <h2 class="panel-head" id="scoring-heading">PPR Scoring</h2>
+        <table class="score-table">
+          <caption class="visually-hidden">Points awarded per statistic</caption>
+          <thead><tr><th scope="col">Stat</th><th scope="col">Points</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Passing yards</th><td>1 per 25</td></tr>
+            <tr><th scope="row">Rushing yards</th><td>1 per 10</td></tr>
+            <tr><th scope="row">Receiving yards</th><td>1 per 10</td></tr>
+            <tr><th scope="row">Touchdown (any)</th><td>4</td></tr>
+            <tr><th scope="row">Reception</th><td>1</td></tr>
+            <tr><th scope="row">Outside ESPN top 100</th><td>+5</td></tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="panel panel-green" id="results" aria-labelledby="results-heading" tabindex="-1">
+        <h2 class="panel-head" id="results-heading">Final Score</h2>
+        <div class="panel-body" id="results-body" aria-live="polite">
+          <p class="results-empty">Fill in both lineups and press Calculate Matchup.</p>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <p>Counted Out Football &middot; Scores are calculated by the C++ game engine compiled to WebAssembly.
+      Rankings reference: <a href="https://www.espn.com/fantasy/football/story/_/page/FFPreseasonRank26main/fantasy-football-rankings-2026-draft-ppr" target="_blank" rel="noopener">ESPN preseason PPR rankings<span class="visually-hidden"> (opens in a new tab)</span></a>.</p>
+  </footer>
+
+  <noscript><p class="noscript">Counted Out Football needs JavaScript to run the scoring engine.</p></noscript>
+</body>
+</html>
