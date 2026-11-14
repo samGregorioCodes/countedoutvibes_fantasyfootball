@@ -150,6 +150,82 @@ a:visited { color: var(--link-visited); }
   background: linear-gradient(#fff07a, var(--gold) 45%, var(--gold-dark));
 }
 
+/* ---------- Counted Out Legends ticker ---------- */
+
+.ticker {
+  display: flex;
+  align-items: stretch;
+  background: #000;
+  border-bottom: 2px solid var(--gold-dark);
+  color: #fff;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+.ticker-label {
+  flex: none;
+  margin: 0;
+  padding: 6px 14px;
+  color: var(--navy-dark);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(#fff07a, var(--gold) 45%, var(--gold-dark));
+}
+.ticker-window { flex: 1; overflow: hidden; }
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 60s linear infinite;
+}
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track { animation-play-state: paused; }
+.ticker-list { display: flex; margin: 0; padding: 0; list-style: none; }
+.ticker-list li { padding: 6px 28px 6px 0; white-space: nowrap; }
+.ticker-list .star { color: var(--gold); margin-right: 6px; }
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; width: auto; }
+  .ticker-list { flex-wrap: wrap; }
+  .ticker-list[aria-hidden="true"] { display: none; }
+  .ticker-list li { white-space: normal; }
+}
+
+/* ---------- Counted Out Hall of Fame (trading-card style) ---------- */
+
+.panel-hof .panel-head { font-size: 18px; }
+.legend-list { margin: 0; padding: 10px; list-style: none; }
+
+.legend-card {
+  margin-bottom: 10px;
+  padding: 0 0 8px;
+  background: linear-gradient(#fffdf2, #f6efd2);
+  border: 3px solid var(--gold-dark);
+  border-radius: 6px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+}
+.legend-card:last-child { margin-bottom: 0; }
+.legend-card p { margin: 6px 8px 0; }
+
+.legend-name {
+  margin: 0 !important;
+  padding: 5px 8px;
+  color: #fff;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: italic;
+  text-shadow: 1px 1px 0 #000;
+  background: linear-gradient(#36429a, var(--navy-dark));
+  border-bottom: 2px solid var(--gold-dark);
+}
+.legend-name .pos { min-width: 0; margin-right: 4px; font-style: normal; font-size: 11px; }
+
 /* ---------- Three-column layout ---------- */
 
 .layout {
@@ -396,6 +472,7 @@ input:user-invalid { border-color: #c00000; background: #fff3f3; }
   .logo { font-size: 36px; }
   .tagline { font-size: 12px; letter-spacing: 2px; }
   .tab { padding: 6px 12px; font-size: 14px; }
+  .ticker-label { padding: 6px 8px; font-size: 12px; }
   .matchup-row { grid-template-columns: 1fr; }
   .versus { margin: 0; text-align: center; }
   .row-identity { grid-template-columns: 1fr 1fr; }
